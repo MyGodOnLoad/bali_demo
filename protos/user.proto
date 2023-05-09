@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package user;
+
+import "google/protobuf/struct.proto";
+
+service User {
+  rpc ListUsers (ListRequest) returns (ListResponse) {}
+  rpc CreateUser (CreateRequest) returns (ItemResponse) {}
+  rpc GetUser (GetRequest) returns (ItemResponse) {}
+  rpc UpdateUser (UpdateRequest) returns (ItemResponse) {}
+  rpc DeleteUser (DeleteRequest) returns (ResultResponse) {}
+}
+
+message GetRequest {
+  int32 id = 1;
+}
+message ListRequest {
+  google.protobuf.Struct filters = 1;
+  int32 offset = 2;
+  int32 limit = 3;
+  string search = 4;
+  string ordering = 5;
+}
+message CreateRequest {
+  google.protobuf.Struct data = 1;
+}
+message UpdateRequest {
+  int32 id = 1;
+  google.protobuf.Struct data = 2;
+}
+message DeleteRequest {
+  int32 id = 1;
+}
+message ItemResponse {
+  google.protobuf.Struct data = 1;
+}
+message ListResponse {
+  repeated google.protobuf.Struct data = 1;
+  int32 count = 2;
+}
+message ResultResponse {
+  bool result = 1;
+}
