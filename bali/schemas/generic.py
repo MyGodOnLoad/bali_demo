@@ -27,8 +27,6 @@ class ListRequest(BaseModel):
     filters: Dict[str, Any] = Field(default_factory=dict)
     offset: int = Field(default_factory=int)
     limit: int = Field(default_factory=int)
-    # ordering: List[str] = Field(default_factory=list)
-    # ordering: Optional[str]
     search: str = Field(default_factory=str)
     ordering: str = Field(default_factory=str)
 

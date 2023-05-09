@@ -2,13 +2,10 @@ from starlette.routing import Route, WebSocketRoute
 
 from bali import Bali
 
-from resources import UserResource, LoginResource
-from services.http import users
+from resources import OrderResource
 
-
-app = Bali(title='user')
-app.register([UserResource, LoginResource])
-# app.include_router(users.ROUTER, prefix='/user')  # 只在http中生效
+app = Bali(title='order')
+app.register([OrderResource])
 
 
 @app.on_event('startup')
@@ -29,4 +26,4 @@ async def start_app():
 
 if __name__ == '__main__':
     # app.start()
-    app.launch(rpc=True)
+    app.launch(http=True)

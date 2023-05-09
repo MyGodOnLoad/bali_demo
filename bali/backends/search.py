@@ -16,14 +16,14 @@ class SearchBackend(object):
             search_fields = set(schema_fields)
         return search_fields
 
-    def get_search_terms(self, request):
-        params = request.query_params.get('search', '')
+    def get_search_terms(self, schema_in):
+        params = schema_in.search
         return params.replace(',', ' ').split()
 
     def get_filters(self, resource, schema_in, query):
         model = resource.model
         search_fields = self.get_fields(resource)
-        search_terms = self.get_search_terms(resource._request)
+        search_terms = self.get_search_terms(schema_in)
 
         search_q = []
         for field in search_fields:

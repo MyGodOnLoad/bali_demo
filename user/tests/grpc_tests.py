@@ -25,6 +25,6 @@ def grpc_stub(grpc_channel):
 
 
 def test_list_users(grpc_stub):
-    request = pb2.ListRequest(limit=3)
+    request = pb2.ListRequest(limit=3, ordering='name')
     response = grpc_stub.ListUsers(request)
     print(MessageToDict(response))
